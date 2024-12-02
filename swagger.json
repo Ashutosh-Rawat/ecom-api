@@ -1,0 +1,437 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+      "version": "1.0.0",
+      "description": "API for E-commerce application",
+      "title": "E-commerce API"
+   },
+   "servers": [
+      {
+         "url": "http://localhost:3100"
+      }
+   ],
+   "tags": [
+      {
+         "name": "User",
+         "description": "signup/signin users"
+      },
+      {
+         "name": "Products",
+         "description": "adding/filtering/rating products"
+      },
+      {
+         "name": "Cart",
+         "description": "getting/adding/deleting products to cart & checkout Bill"
+      }
+   ],
+   "components": {
+      "securitySchemes": {
+         "JWT": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "authorization"
+         }
+      }
+   },
+   "paths": {
+      "/api/products": {
+         "get": {
+            "tags": [
+               "Products"
+            ],
+            "summary": "get product list",
+            "description": "get all product details listed on website",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "401": {
+                  "description": "unauthorized user"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Products"
+            ],
+            "summary": "add product",
+            "description": "add a new product authorized to seller",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "price": {
+                              "type": "number",
+                              "format": "float"
+                           },
+                           "sizes": {
+                              "type": "array",
+                              "items": {
+                                 "type": "string"
+                              }
+                           },
+                           "desc": {
+                              "type": "string"
+                           },
+                           "category": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "201": {
+                  "description": "ok"
+               },
+               "401": {
+                  "description": "unauthorized user"
+               }
+            }
+         }
+      },
+      "/api/products/{id}": {
+         "get": {
+            "tags": [
+               "Products"
+            ],
+            "summary": "get one product",
+            "description": "get product details of a product by id",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "404": {
+                  "description": "product not found"
+               }
+            }
+         }
+      },
+      "/api/products/filter": {
+         "get": {
+            "tags": [
+               "Products"
+            ],
+            "summary": "filter products",
+            "description": "filter products based on min/max price, category and sizes(optional)",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "minPrice",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                     "type": "number"
+                  }
+               },
+               {
+                  "name": "maxPrice",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                     "type": "number"
+                  }
+               },
+               {
+                  "name": "category",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "sizes",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "string"
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "404": {
+                  "description": "no products match the description"
+               }
+            }
+         }
+      },
+      "/api/products/rate": {
+         "post": {
+            "tags": [
+               "Products"
+            ],
+            "summary": "rate product",
+            "description": "provide rating to a product 1-5 (inclusive)",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "userId",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               },
+               {
+                  "name": "productId",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               },
+               {
+                  "name": "rating",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "invalid input"
+               }
+            }
+         }
+      },
+      "/api/user/signup": {
+         "post": {
+            "tags": [
+               "User"
+            ],
+            "summary": "signup user",
+            "description": "signup for a new user",
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "email": {
+                              "type": "string"
+                           },
+                           "password": {
+                              "type": "string"
+                           },
+                           "type": {
+                              "type": "string",
+                              "enum": [
+                                 "seller",
+                                 "customer"
+                              ],
+                              "description": "role of user"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "incorrect credentials"
+               }
+            }
+         }
+      },
+      "/api/user/signin": {
+         "post": {
+            "tags": [
+               "User"
+            ],
+            "summary": "login user",
+            "description": "user login to get token",
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "email": {
+                              "type": "string"
+                           },
+                           "password": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "incorrect credentials"
+               }
+            }
+         }
+      },
+      "/api/cart": {
+         "get": {
+            "tags": [
+               "Cart"
+            ],
+            "summary": "get cart items",
+            "description": "get all items in the cart",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "empty cart"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Cart"
+            ],
+            "summary": "add item to cart",
+            "description": "add a new item to the cart",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "productId",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               },
+               {
+                  "name": "quantity",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               }
+            ],
+            "responses": {
+               "201": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "invalid input"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Cart"
+            ],
+            "summary": "delete item from cart",
+            "description": "delete an item from the cart",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "productId",
+                  "in": "query",
+                  "required": true,
+                  "schema": {
+                     "type": "number"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               },
+               "400": {
+                  "description": "invalid input"
+               }
+            }
+         }
+      },
+      "/api/cart/checkout": {
+         "get": {
+            "tags": [
+               "Cart"
+            ],
+            "summary": "checkout cart",
+            "description": "get the total bill for the cart",
+            "security": [
+               {
+                  "JWT": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "ok"
+               }
+            }
+         }
+      }
+   }
+}
