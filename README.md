@@ -98,9 +98,9 @@ npm start
 
 
 ## Configuration
-* `mongooseConfig.js` - Configures Mongoose for MongoDB interactions and initializes categories.
+* `mongooseConfig.js` - Configures Mongoose for MongoDB operations.
 * `applicationError.middleware.js` - Handles application errors, unwanted or unrecognized requests, and unknown/wrong routes errors.
-* `jwtAuth.middleware.js` - Middleware for JWT authentication and authorization, saves user info for user ID requirements.
+* `jwtAuth.middleware.js` - Middleware for JWT authentication and authorization.
 * `logger.middleware.js` - Creates error logs which users may face and saves them for developer review.
 
 
