@@ -13,10 +13,6 @@ const productSchema = new Schema({
         type: String, 
         required: [true, 'Product image URL is required'] 
     },
-    productCategory: { 
-        type: String, 
-        required: [true, 'Product category is required'] 
-    },
     productPrice: { 
         type: Number, 
         required: [true, 'Product price is required'], 
