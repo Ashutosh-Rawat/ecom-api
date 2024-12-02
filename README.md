@@ -1,6 +1,6 @@
 # E-commerce API
 
-A backend REST API application based on the MERN stack (MongoDB, Express.js, React, Node.js) to implement various features for an e-commerce platform.
+A backend REST API application based on the MERN stack (MongoDB, Express.js, Node.js) to implement various features for an e-commerce platform.
 
 ## Table of Contents
 - [Introduction](#introduction)
