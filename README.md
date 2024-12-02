@@ -1,23 +1,14 @@
 # E-commerce API
 
-// Create a new user
-* `/api/user/signup`: POST
-
-// Login a user
-* `/api/user/signin`: POST
-
-// Reset user password (requires JWT authentication)
-* `/api/user/reset`: PUT
-* 
 A backend REST API application based on the MERN stack (MongoDB, Express.js, React, Node.js) to implement various features for an e-commerce platform.
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Deployment](#deployment)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Middleware](#middleware)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
@@ -34,6 +25,11 @@ The E-commerce API is designed to provide a robust backend for an e-commerce pla
 - Payment integration
 - Admin dashboard
 - Secure and scalable architecture
+
+## Deployment
+*The E-commerce API is deployed on Render.com.*
+
+[Render Deployment Link](https://render.com)
 
 ## Installation
 
@@ -60,214 +56,69 @@ The E-commerce API is designed to provide a robust backend for an e-commerce pla
     npm start
     ```
 
-## Usage
 
+## Usage
 ### Running the Server
 To start the server, run:
 ```bash
 npm start
 ```
 
-The server will start on http://localhost:3100.
-
-API Endpoints
-User Routes
-POST /api/user/signup: Register a new user
-
-POST /api/user/signin: Login a user
-
-PUT /api/user/reset: Reset user password (requires JWT authentication)
-
-Product Routes
-GET /api/products: Get all products
-
-POST /api/products: Create a new product (requires admin authentication)
-
-GET /api/products/filter: Filter products by price, category, and size
-
-GET /api/products/avg: Get the average price of products
-
-GET /api/products/:id: Get a single product by ID
-
-DELETE /api/products/:id: Delete a product by ID
-
-POST /api/products/rate: Rate a product
-
-Cart Routes
-GET /api/cart: Get cart items (requires JWT authentication)
-
-POST /api/cart: Add item to cart (requires JWT authentication)
-
-DELETE /api/cart: Remove item from cart (requires JWT authentication)
-
-GET /api/cart/checkout: Get the bill for the cart (requires JWT authentication)
-
-Order Routes
-GET /api/orders: Get orders (requires JWT authentication)
-
-POST /api/orders: Place an order (requires JWT authentication)
-
-Like Routes
-POST /api/likes: Like an item (requires JWT authentication)
-
-GET /api/likes: Get likes (requires JWT authentication)
-
-Documentation
-GET /api/docs: Access API documentation using Swagger UI
-
-Middleware
-applicationError.middleware.js: Handles application errors
-
-jwtAuth.middleware.js: JWT authentication middleware
-
-logger.middleware.js: Logging middleware
-
-Configuration
-mongooseConfig.js: Mongoose configuration and category initialization
-
-Dependencies
-bcrypt: For hashing passwords
-
-body-parser: For parsing request bodies
-
-cors: For enabling Cross-Origin Resource Sharing
-
-dotenv: For loading environment variables
-
-express: Web framework for Node.js
-
-jsonwebtoken: For JWT authentication
-
-mongodb: MongoDB driver for Node.js
-
-mongoose: MongoDB object modeling tool
-
-multer: For handling file uploads
-
-path: For working with file and directory paths
-
-swagger-ui-express: For serving Swagger UI
-
-winston: For logging
-
-Contributing
-Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Deployment on Render.com
-To deploy this application on Render.com, follow these steps:
-
-Create a new Web Service on Render.com:
-
-Go to Render.comand create a new Web Service.
-
-Connect your GitHub repository to Render.
-
-Set up environment variables:
-
-In the Render dashboard, go to the Environment tab and add the following environment variables:
-
-env
-DB_URL=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-Build and Start Command:
-
-Set the Build Command to:
-
-bash
-npm install
-Set the Start Command to:
-
-bash
-npm start
-Access your application:
-
-Once deployed, your application will be accessible at the URL provided by Render.
-
-markdown
-# The server will start on http://localhost:3100.
-
-# API Endpoints
-# User Routes
-# POST /api/user/signup: Register a new user
-
-# POST /api/user/signin: Login a user
-
-# PUT /api/user/reset: Reset user password (requires JWT authentication)
-
-# Product Routes
-# GET /api/products: Get all products
-
-# POST /api/products: Create a new product (requires admin authentication)
-
-# GET /api/products/filter: Filter products by price, category, and size
-
-# GET /api/products/avg: Get the average price of products
-
-# GET /api/products/:id: Get a single product by ID
-
-# DELETE /api/products/:id: Delete a product by ID
-
-# POST /api/products/rate: Rate a product
-
-# Cart Routes
-# GET /api/cart: Get cart items (requires JWT authentication)
-
-# POST /api/cart: Add item to cart (requires JWT authentication)
-
-# DELETE /api/cart: Remove item from cart (requires JWT authentication)
-
-# GET /api/cart/checkout: Get the bill for the cart (requires JWT authentication)
-
-# Order Routes
-# GET /api/orders: Get orders (requires JWT authentication)
-
-# POST /api/orders: Place an order (requires JWT authentication)
-
-# Like Routes
-# POST /api/likes: Like an item (requires JWT authentication)
-
-# GET /api/likes: Get likes (requires JWT authentication)
-
-# Documentation
-# GET /api/docs: Access API documentation using Swagger UI
-
-# Middleware
-# applicationError.middleware.js: Handles application errors
-
-# jwtAuth.middleware.js: JWT authentication middleware
-
-# logger.middleware.js: Logging middleware
-
-# Configuration
-# mongooseConfig.js: Mongoose configuration and category initialization
-
-# Dependencies
-# bcrypt: For hashing passwords
-
-# body-parser: For parsing request bodies
-
-# cors: For enabling Cross-Origin Resource Sharing
-
-# dotenv: For loading environment variables
-
-# express: Web framework for Node.js
-
-# jsonwebtoken: For JWT authentication
-
-# mongodb: MongoDB driver for Node.js
-
-# mongoose: MongoDB object modeling tool
-
-# multer: For handling file uploads
-
-# path: For working with file and directory paths
-
-# swagger-ui-express: For serving Swagger UI
-
-# winston: For logging
-
-# Contributing
-# Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
+## API Endpoints
+
+### User Endpoints
+* `/api/user/signup`: POST - Create a new user
+* `/api/user/signin`: POST - Login a user
+* `/api/user/reset`: PUT - Reset user password (requires JWT authentication)
+
+### Product Endpoints
+* `/api/products`: GET - Get all products
+* `/api/products`: POST - Add a new product (requires admin authentication)
+* `/api/products/filter`: GET - Filter products by price, category, and size
+* `/api/products/avg`: GET - Get average product price
+* `/api/products/:id`: GET - Get a product by ID
+* `/api/products/:id`: DELETE - Delete a product by ID (requires admin authentication)
+* `/api/products/rate`: POST - Rate a product
+
+### Cart Endpoints
+* `/api/cart`: GET - Get cart items (requires JWT authentication)
+* `/api/cart`: POST - Add item to cart (requires JWT authentication)
+* `/api/cart`: DELETE - Remove item from cart (requires JWT authentication)
+* `/api/cart/checkout`: GET - Get the bill for the cart (requires JWT authentication)
+
+### Order Endpoints
+* `/api/orders`: GET - Get orders (requires JWT authentication)
+* `/api/orders`: POST - Place an order (requires JWT authentication)
+
+### Like Endpoints
+* `/api/likes`: POST - Like an item (requires JWT authentication)
+* `/api/likes`: GET - Get likes (requires JWT authentication)
+
+### Documentation
+* `/api/docs`: GET - Access API documentation using Swagger UI
+
+
+## Configuration
+* `mongooseConfig.js` - Configures Mongoose for MongoDB interactions and initializes categories.
+* `applicationError.middleware.js` - Handles application errors, unwanted or unrecognized requests, and unknown/wrong routes errors.
+* `jwtAuth.middleware.js` - Middleware for JWT authentication and authorization, saves user info for user ID requirements.
+* `logger.middleware.js` - Creates error logs which users may face and saves them for developer review.
+
+
+### Dependencies
+* **For hashing passwords**: `bcrypt`
+* **For parsing request bodies**: `body-parser`
+* **For enabling Cross-Origin Resource Sharing**: `cors`
+* **For loading environment variables**: `dotenv`
+* **Web framework for Node.js**: `express`
+* **For JWT authentication**: `jsonwebtoken`
+* **MongoDB driver for Node.js**: `mongodb`
+* **MongoDB object modeling tool**: `mongoose`
+* **For handling file uploads**: `multer`
+* **For working with file and directory paths**: `path`
+* **For serving Swagger UI**: `swagger-ui-express`
+* **For logging**: `winston`
+
+
+### Contributing
+* *Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.*
