@@ -36,7 +36,8 @@ export const logger = winston.createLogger({
 const loggingMiddleware = (req,res,next) => {
     if(!req.url.includes('signup') && !req.url.includes('singin')) {
         res.on('finish', () => {
-            const logData = `${req.originalUrl} - ${JSON.stringify(req.body)} [response: (${res.statusCode}) ${res.statusMessage}]`
+            const { email, password, pass, ...rest } = req.body;
+            const logData = `${req.originalUrl} - ${JSON.stringify({ email, ...rest })} [response: (${res.statusCode}) ${res.statusMessage}]`
             logger.info(logData)
         })
     }
