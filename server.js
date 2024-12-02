@@ -11,9 +11,9 @@ import cartRouter from './src/features/cart/cart.routes.js'
 import orderRouter from './src/features/orders/orders.routes.js'
 // import basicAuthorizer from './src/middlewares/basicAuth.middleware.js'
 import jwtAuth from './src/middlewares/jwtAuth.middleware.js'
-// import apiDocs from './swagger.json' assert {type: 'json'}
+import apiDocs from './swagger.json' assert {type: 'json'}
 // the upper code is not fully supported as it is in deployment v3 so implement below code
-const apiDocs = require('./swagger.json')
+// const apiDocs = require('./swagger.json')
 import loggingMiddleware from './src/middlewares/logger.middleware.js'
 import applicationErrorHandler from './src/middlewares/applicationError.middleware.js'
 // import connectDB from './src/config/mongodb.js'
