@@ -8,6 +8,7 @@ A backend REST API application based on the MERN stack (MongoDB, Express.js, Rea
 - [Deployment](#deployment)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Authorization/Authentication](#authorization/authentication)
 - [API Endpoints](#api-endpoints)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
@@ -63,35 +64,42 @@ To start the server, run:
 npm start
 ```
 
+## Authorization/Authentication
+To access protected routes, include the JWT token in the request header with the key `Authorization` and the value `Bearer <jwt token>`.
+
+Example:
+```Authorization: Bearer <jwt token>```
+
+
 ## API Endpoints
 
 ### User Endpoints
 * `/api/user/signup`: POST - Create a new user
 * `/api/user/signin`: POST - Login a user
-* `/api/user/reset`: PUT - Reset user password (requires JWT authentication)
+* `/api/user/reset`: PUT - Reset user password *(requires JWT authentication)*
 
-### Product Endpoints
+### Product Endpoints *(requires JWT authentication)*
 * `/api/products`: GET - Get all products
-* `/api/products`: POST - Add a new product (requires admin authentication)
+* `/api/products`: POST - Add a new product
 * `/api/products/filter`: GET - Filter products by price, category, and size
 * `/api/products/avg`: GET - Get average product price
 * `/api/products/:id`: GET - Get a product by ID
-* `/api/products/:id`: DELETE - Delete a product by ID (requires admin authentication)
+* `/api/products/:id`: DELETE - Delete a product by ID
 * `/api/products/rate`: POST - Rate a product
 
-### Cart Endpoints
-* `/api/cart`: GET - Get cart items (requires JWT authentication)
-* `/api/cart`: POST - Add item to cart (requires JWT authentication)
-* `/api/cart`: DELETE - Remove item from cart (requires JWT authentication)
-* `/api/cart/checkout`: GET - Get the bill for the cart (requires JWT authentication)
+### Cart Endpoints *(requires JWT authentication)*
+* `/api/cart`: GET - Get cart items
+* `/api/cart`: POST - Add item to cart
+* `/api/cart`: DELETE - Remove item from cart
+* `/api/cart/checkout`: GET - Get the bill for the cart *(requires replica set enabled in mongodb)*
 
-### Order Endpoints
-* `/api/orders`: GET - Get orders (requires JWT authentication)
-* `/api/orders`: POST - Place an order (requires JWT authentication)
+### Order Endpoints *(requires JWT authentication)*
+* `/api/orders`: GET - Get orders
+* `/api/orders`: POST - Place an order
 
-### Like Endpoints
-* `/api/likes`: POST - Like an item (requires JWT authentication)
-* `/api/likes`: GET - Get likes (requires JWT authentication)
+### Like Endpoints *(requires JWT authentication)*
+* `/api/likes`: POST - Like an item
+* `/api/likes`: GET - Get likes
 
 ### Documentation
 * `/api/docs`: GET - Access API documentation using Swagger UI
