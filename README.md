@@ -29,7 +29,7 @@ The E-commerce API is designed to provide a robust backend for an e-commerce pla
 ## Deployment
 *The E-commerce API is deployed on Render.com.*
 
-[Render Deployment Link](https://render.com)
+[Render Deployment Link](https://ecom-api-kcuj.onrender.com/api/docs/)
 
 ## Installation
 
